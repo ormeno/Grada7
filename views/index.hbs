@@ -1,0 +1,168 @@
+<!-- Masthead-->
+<header class="masthead">
+    <div class="container px-4 px-lg-5 h-100">
+        <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+            <div class="col-lg-18 align-self-end">
+                <h1 class="text-white font-weight-bold">GRADA 7</h1>
+                <h3 class="text-white font-weight-bold">LA WEB DE LAS CRYPTOPORRAS</h3>
+                <h5 class="text-white font-weight-bold">Gana magnificos premios participando en ellas u obten beneficios generando tus propias CryptoPorras</h5>
+            </div>
+            <div class="col-lg-18 align-self-center">
+                {{#if paramAltaExists}}                    
+                    <table class="table table-striped table-dark align-self-center">
+                    <thead>
+                        <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nueva CryptoPorra</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <th scope="row">Título</th>
+                        <td>{{tituloBet}}</td>
+                        </tr>
+                        <tr>
+                        <th scope="row">Detalle</th>
+                        <td>{{descripcion}}</td>
+                        </tr>
+                        <tr>
+                        <th scope="row">Apuesta mínima</th>
+                        <td>{{betMin}}</td>
+                        </tr>
+                        <tr>
+                        <th scope="row">Equipo A</th>
+                        <td>{{equipoA}}</td>
+                        </tr>
+                        <tr>
+                        <th scope="row">Equipo B</th>
+                        <td>{{equipoB}}</td>
+                        </tr>
+                        <tr>
+                        <th scope="row">% propietario</th>
+                        <td>{{porcen}}</td>
+                        </tr>
+                    </tbody>
+                    </table>
+                    <input type="hidden" id="titulo" value={{tituloBet}}>
+                    <input type="hidden" id="desc" value='{{descripcion}}'>
+                    <input type="hidden" id="betMin" value='{{betMin}}'>
+                    <input type="hidden" id="eqA" value='{{equipoA}}'>
+                    <input type="hidden" id="eqB" value='{{equipoB}}'>
+                    <input type="hidden" id="porcentaje" value='{{porcen}}'>
+                    <input type="hidden" id="idTelegram" value='{{idTlg}}'>
+                    <h6 class="text-white mb-3">Si los datos son correctos pulse FIRMAR. Coste del alta de apuesta nueva 0.1 MATIC. Coste del gas no incluido </h6>
+                    <h2 class="text-white"><button class="btn btn-primary btn-xl" type="button" id="btnFirmarAlta">FIRMAR</h2>                   
+                {{/if}}
+                {{#if paramApostarExists}}                    
+                    <table class="table table-striped table-dark">
+                    <thead>
+                        <tr>                        
+                        <th scope="col">#</th>
+                        <th scope="col">Apuesta a realizar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <th scope="row">Título</th>
+                        <td>{{tituloBet}}</td>
+                        </tr>
+                        <tr>                        
+                        <th scope="row">Ganador</th>
+                        <td>{{eqWin}}</td>
+                        </tr>          
+                        <tr>                        
+                        <th scope="row">Apuesta mínima</th>
+                        <td>{{min}}</td>
+                        </tr>             
+                        <tr>                        
+                        <th scope="row">Importe</th>
+                        <td><input type="number" class="form-control" id="amount" placeholder="Ej: 0.1, 0.5, 11, ... "></input></td>
+                        </tr>
+                    </tbody>
+                    </table>
+                    <input type="hidden" id="idBet" value={{idBet}}>
+                    <input type="hidden" id="eqWin" value='{{eqWin}}'>   
+                    <input type="hidden" id="titulo" value={{tituloBet}}>                 
+                    <h6 class="text-white mb-3">Si el dato es correcto pulse FIRMAR. Solo una apuesta por address.</h6>
+                    <h6 class="text-white-50 mb-3">Coste del gas no incluido </h6>
+                    <h2 class="text-white mt-3"><button class="btn btn-primary btn-xl" type="button" id="btnFirmarApuesta">FIRMAR APUESTA</a></h2>                   
+                {{/if}}
+                {{#if paramCerrarExists}}                    
+                    <table class="table table-striped table-dark">
+                    <thead>
+                        <tr>                        
+                        <th scope="col">#</th>
+                        <th scope="col">Porra a cerrar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <th scope="row">Título</th>
+                        <td>{{tituloBet}}</td>
+                        </tr>                    
+                    </tbody>
+                    </table>
+                    <input type="hidden" id="idBet" value={{idBet}}>  
+                    <input type="hidden" id="titulo" value={{tituloBet}}>                 
+                    <h6 class="text-white mb-3">Para cerrar la porra pulse FIRMAR. Solo podrá realizarlo con la address propietaria de la porra y debe estar Abierta.</h6>
+                    <h6 class="text-white-50 mb-3">Coste del gas no incluido </h6>
+                    <h2 class="text-white mt-3"><button class="btn btn-primary btn-xl" type="button" id="btnFirmarCerrar">FIRMAR</h2>                   
+                {{/if}}
+                {{#if paramDistribuirExists}}                    
+                    <table class="table table-striped table-dark">
+                    <thead>
+                        <tr>                        
+                        <th scope="col">#</th>
+                        <th scope="col">Ganador de la porra</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <th scope="row">Título</th>
+                        <td>{{tituloBet}}</td>
+                        </tr>       
+                        <tr>
+                        <th scope="row">EL EQUIPO GANADOR ES: </th>
+                        <td>{{winner}}</td>
+                        </tr>                 
+                    </tbody>
+                    </table>
+                    <input type="hidden" id="idBet" value={{idBet}}>  
+                    <input type="hidden" id="titulo" value={{tituloBet}}>        
+                    <input type="hidden" id="winner" value='{{winnerBet}}'>        
+                    <h6 class="text-white mb-3">Para indicar el ganador de la porra pulse FIRMAR. Solo podrá realizarlo con la address propietaria de la porra y debe estar Cerrada.</h6>
+                    <h6 class="text-white mb-3">IMPORTANTE: Esta acción implica repartir dividendos entre los apostantes acertados y entre el propietario si indicó un porcentaje de beneficio. </h6>
+                    <h6 class="text-white-50 mb-3">Coste del gas no incluido </h6>
+                    <h2 class="text-white mt-3"><button class="btn btn-primary btn-xl" type="button" id="btnFirmarDistribuir">FIRMAR</a></h2>                   
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- FAQ -->
+<section class="page-section bg-primary" id="faq">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2 class="text-white mt-0">¿Que es Grada 7?</h2>
+                <p class="text-white-75 mb-4">Grada 7 es una plataforma para generar todas las CriptoPorras que quiera o participar en las existentes. 
+                    Podrás ganar MATICs participando en las existentes o generando tus propias CryptoPorras</p>
+                <hr class="divider divider-light" />
+                <h2 class="text-white mt-0">¿Como funciona?</h2>
+                <p class="text-white-75 mb-4">Muy sencillo, Grada 7 se compone de: </p>
+                <p class="text-white-75 mb-4"><i class="bi bi-check2"></i> El Bot de Telegram Grada7Bot (https:/....), desde donde puede dar de alta una porra o apostar en una de las existentes.</p>
+                <p class="text-white-75 mb-4"><i class="bi bi-check2"></i> La web www.grada7.ga donde podrás firmar todas las transciones en las que sea necesario a través de tu billetera Metamask.</p>
+                <p class="text-white-75 mb-4"><i class="bi bi-check2"></i> EL Smart Contract, que garantiza el reparto de dividendos entre los acertantes bajo esta formula:</p>
+                <p class="text-white-75 mb-4"> ganancia=(tuApuesta+(tuApuesta/totalApuestasTuEquipo*totalApuestasOtroEquipo))-PorcentajeOwner.</p>
+                <hr class="divider divider-light" />
+                <h2 class="text-white mt-0">¿Que aporta la tecnología Blockchain a las porras?</h2>
+                <p class="text-white-75 mb-4">Transparencia. Cualquiera puede validar el Contrato Inteligente y consultar todas las transaciones de sus tokens. Además la blockhacin garantiza la seguridad de la información y la inviolabilidad de los datos.</p>
+                <p class="text-white-75 mb-4">También se consigue la ausencia de confianza en el dueño de la CriptoPorra, ya que el 
+                     Contrato Inteligente garantiza que el reparto de los divididendos solamente se haga cuando esta pase a Pagada. 
+                     El dueño nunca podrá acceder a los fondos de la porra, solo podrá obtener el porcentaje de beneficio que haya marcado en ese mismo momento</p>
+            </div>
+        </div>
+    </div>
+</section>
+

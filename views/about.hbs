@@ -1,0 +1,14 @@
+<header class="masthead">
+    <div class="container px-4 px-lg-5 h-10">
+        <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+            {{>coleccionUsuario}}
+        </div>
+    </div>
+    <a class="btn btn-primary btn-xl" href="/">Volver</a>
+</header>
+
+{{#if paramExists}} 
+  <ul>
+     <h1>{{tituloBet}}{{descripcion}}{{BetMin}}{{equipoA}}{{equipoB}}</h1>
+  </ul>
+{{/if}}

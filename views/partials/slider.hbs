@@ -1,0 +1,30 @@
+<img name="slider" width="150" height="300" >
+<script>
+// funcion que ejecuta la funcion indicada una vez cargue la página
+window.addEventListener('load', function (){
+    var imagenes = [];
+
+    imagenes[0] = './assets/img/nfts/8.png';
+    imagenes[1] = './assets/img/nfts/24.png';
+    imagenes[2] = './assets/img/nfts/27.png';
+    imagenes[3] = './assets/img/nfts/2.png';
+    imagenes[4] = './assets/img/nfts/7.png';
+    imagenes[5] = './assets/img/nfts/14.png';
+    imagenes[6] = './assets/img/nfts/1.png';
+    imagenes[7] = './assets/img/nfts/6.png';
+    imagenes[8] = './assets/img/nfts/13.png';
+
+    var indiceImagenes = 0;
+    var tiempo = 500;
+
+    function cambiarImagenes () {
+      document.slider.src = imagenes[indiceImagenes];
+      if (indiceImagenes<8) {
+          indiceImagenes++;
+      } else{
+          indiceImagenes = 0;
+      }
+    }
+    setInterval(cambiarImagenes, tiempo);
+})
+</script>
