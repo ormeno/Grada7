@@ -22,6 +22,14 @@
 //
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
+require('dotenv').config();
+
+const HDWalletProvider = require('@truffle/hdwallet-provider');
+const maticKey = process.env.MUMBAI_KEY;
+const infuraKey = process.env.INFURA_KEY;
+const chainstackKey = process.env.CHAINSTACK_KEY;
+const chainstackKeyPro = process.env.CHAINSTACK_KEY_PRO;
+
 
 module.exports = {
   /**
@@ -41,11 +49,37 @@ module.exports = {
     // tab if you use this network and you must also set the `host`, `port` and `network_id`
     // options below to some value.
     //
+    // truffle migrate --network mumbai --reset //  https://rpc-mumbai.maticvigil.com   https://matic-mumbai.chainstacklabs.com   https://nd-452-567-138.p2pify.com/${chainstackKey}
+    //
      development: {
       host: "127.0.0.1",     // Localhost (default: none)
       port: 7545,            // Standard Ethereum port (default: none)
       network_id: "*",       // Any network (default: none)
      },
+     ropsten: {
+      provider: function() {
+        return new HDWalletProvider(process.env.MNEMONIC2, "https://ropsten.infura.io/v3/YOUR-PROJECT-ID");
+      },
+      network_id: '3',
+    },
+     mumbai: {  
+      provider: function () {
+         return new HDWalletProvider(process.env.MNEMONIC2, `https://matic-mumbai.chainstacklabs.com`);
+      },
+      network_id: 80001,
+    //  gas: 600000000,           // Gas sent with each transaction (default: ~6700000)
+    //  gasPrice: 3000000000,  // 3 gwei (in wei) (default: 100 gwei)
+    },
+    // Me ha fallado y lo he desplegado desde Remix con Injected Web3 aunmentando el Gas Price a Medium. En Metamask uso https://matic-mainnet.chainstacklabs.com
+    matic: {  
+      networkCheckTimeout: 1000000,
+      timeoutBlocks: 1000,
+      gasPrice: 60000000000, // 60 gwei
+      provider: function () {
+         return new HDWalletProvider(process.env.MNEMONIC, `https://nd-324-535-755.p2pify.com/${chainstackKeyPro}`);
+      },
+      network_id: 137,
+    },
     // Another network with more advanced options...
     // advanced: {
     // port: 8777,             // Custom port
