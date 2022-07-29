@@ -35,7 +35,7 @@ function init() {
     validarConnect(document.getElementById('btnFirmarDistribuir'));    
  }
   //validarConnect(document.getElementById('btnConsultar'));
-  //validarConnect(document.getElementById('enableEthereumButton'));
+  validarConnect(document.getElementById('enableEthereumButton'));
 
   function validarConnect(boton){
     boton.addEventListener('click', () => {    
