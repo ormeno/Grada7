@@ -40,11 +40,13 @@ function init() {
   function validarConnect(boton){
     boton.addEventListener('click', () => {    
       if (typeof window.ethereum == 'undefined') {   
+        const url = document.getElementById('url').value;
+       // console.log('llamada:', url);
         Swal.fire({
           title: '¡ Metamask no instalado !',
           position: 'top',
           html: 'Para poder usar esta web necesita tener instalado ' +
-          '<a target="_blank" href="https://metamask.app.link/dapp/rayonft.ga/">Metamask</a>',
+          '<a target="_blank" href="https://metamask.app.link/dapp/grada7.ga/' + url + '">Metamask</a>',
         });
       } else {
         const valueAd = document.getElementById('accountSelected').textContent;    
@@ -124,11 +126,11 @@ function funcionFirmarAlta() {
       const addressValueOri = document.getElementById('accountSelected').textContent;
       //console.log('Ori:',addressValueOri);
       const tituloBet = document.getElementById('titulo').value;
-      console.log('Titulo:',tituloBet);
+     // console.log('Titulo:',tituloBet);
       const betMin = document.getElementById('betMin').value;
-      console.log('betMin:',betMin);
+     // console.log('betMin:',betMin);
       const betMinParam = web3.utils.toWei(betMin, "ether");
-      console.log('betMinParam:',betMinParam);
+     // console.log('betMinParam:',betMinParam);
       const descripcion = document.getElementById('desc').value;
       //console.log('descripcion:',descripcion);
       const equipoA = document.getElementById('eqA').value;
@@ -136,9 +138,9 @@ function funcionFirmarAlta() {
       const equipoB = document.getElementById('eqB').value;
       //console.log('equipoB:',equipoB);
       const porcentaje = document.getElementById('porcentaje').value;
-      console.log('porcentaje:',porcentaje);
+      //console.log('porcentaje:',porcentaje);
       const idTelegram = document.getElementById('idTelegram').value;
-      console.log('idTelegram:',idTelegram);
+      //console.log('idTelegram:',idTelegram);
       // const amountTransfer = web3.utils.toWei(amountString, 'ether');
       const amountToSend = web3.utils.toWei("0.1", "ether");
       //console.log('amountToSend:',amountToSend);
@@ -171,11 +173,11 @@ function funcionFirmarApuesta() {
   btnFirmaApuesta.addEventListener('click', () => {
      const addressValueOri = document.getElementById('accountSelected').textContent;     
      const idBet = document.getElementById('idBet').value;
-     console.log('idBet:',idBet);
+     //console.log('idBet:',idBet);
      const eqWin = document.getElementById('eqWin').value;
-     console.log('eqWin:',eqWin);     
+     //console.log('eqWin:',eqWin);     
      const amount = document.getElementById('amount').value;
-     console.log('amount:',amount);     
+     //console.log('amount:',amount);     
      const amountToSend = web3.utils.toWei(amount, "ether");     
     try {
        varContract.methods.bet(idBet, eqWin).send({ from: addressValueOri, to:addressContract, value: amountToSend}).then(res => {
@@ -207,7 +209,7 @@ function funcionFirmarCerrar() {
   btnFirmaCerrar.addEventListener('click', () => {
      const addressValueOri = document.getElementById('accountSelected').textContent;     
      const idBet = document.getElementById('idBet').value;
-     console.log('idBet:',idBet);     
+    // console.log('idBet:',idBet);     
     try {
        varContract.methods.cerrarApuesta(idBet).send({ from: addressValueOri, to:addressContract}).then(res => {
        if (res.status) {
@@ -239,9 +241,9 @@ function funcionFirmarDistribuir() {
      const addressValueOri = document.getElementById('accountSelected').textContent;     
      const idBet = document.getElementById('idBet').value;
      const winner = document.getElementById('winner').value;
-     console.log('Distribui idBet :',idBet);     
-     console.log('Distribui winner:',winner);  
-     console.log('Distribui addressValueOri:',addressValueOri);  
+    // console.log('Distribui idBet :',idBet);     
+    // console.log('Distribui winner:',winner);  
+    // console.log('Distribui addressValueOri:',addressValueOri);  
     try {
        varContract.methods.distributePrizes(idBet, winner).send({ from: addressValueOri, to:addressContract}).then(res => {
        if (res.status) {
@@ -269,22 +271,18 @@ function funcionFirmarDistribuir() {
 
 function interact() {
   
-  console.log('11');
   var elementBtnFirma = document.getElementById('btnFirmarAlta'); 
   if(typeof(elementBtnFirma) != 'undefined' && elementBtnFirma != null){    
     funcionFirmarAlta();    
   }
-  console.log('22');
   var elementBtnFirmaApu = document.getElementById('btnFirmarApuesta'); 
   if(typeof(elementBtnFirmaApu) != 'undefined' && elementBtnFirmaApu != null){    
     funcionFirmarApuesta();    
   }
-  console.log('33');
   var elementBtnFirmaCerrar = document.getElementById('btnFirmarCerrar'); 
   if(typeof(elementBtnFirmaCerrar) != 'undefined' && elementBtnFirmaCerrar != null){
     funcionFirmarCerrar();      
   }
-  console.log('44');
   var elementBtnFirmaDis = document.getElementById('btnFirmarDistribuir'); 
   if(typeof(elementBtnFirmaDis) != 'undefined' && elementBtnFirmaDis != null){
     funcionFirmarDistribuir();      

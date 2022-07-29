@@ -3,6 +3,23 @@
     <div class="container px-4 px-lg-5">
         <a class="navbar-brand" href="#">Grada 7</a>
         <div class="navbar-brand">
+                 {{#if paramAltaExists}}
+                   <input type="hidden" id="url" value='{{url}}'>
+                 {{else}}
+                    {{#if paramApostarExists}}
+                     <input type="hidden" id="url" value='{{url}}'>
+                    {{else}}
+                       {{#if paramCerrarExists}}
+                         <input type="hidden" id="url" value='{{url}}'>
+                       {{else}}
+                         {{#if paramDistribuirExists}}
+                         <input type="hidden" id="url" value='{{url}}'>
+                         {{else}}
+                          <input type="hidden" id="url" value=''>
+                         {{/if}}
+                       {{/if}}
+                    {{/if}}
+                 {{/if}}
                 <button id="enableEthereumButton" class="btn btn-warning text-white">Conectar Metamask</button>
                 <p id="accountSelected" class="bg-dark text-white"></p>
         </div>

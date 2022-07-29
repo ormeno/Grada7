@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
 });
 
 app.get("/firmar", (req, res) => {
-  console.log('get /firmar');
+  console.log('get /firmar', req);
   let titulo = req.query.titulo;
   let descri = req.query.descri;
   let min = req.query.min;
@@ -40,10 +40,13 @@ app.get("/firmar", (req, res) => {
   let eqB = req.query.eqB;
   let porcentaje = req.query.porcentaje;
   let idTelegram = req.query.idTelegram; 
+  let urlFirmar = "firmar?titulo="+titulo+"&descri="+descri+"&min="+min+"&eqA="+eqA+"&eqB="+eqB+"&porcentaje="+porcentaje+"&idTelegram="+idTelegram;                  
   if (titulo != null && descri!=null && min!=null && eqA!=null && eqB!=null && porcentaje!=null && idTelegram!=null){
     parametrosExisten=true;
-  }  
-  res.render("index", {layout: 'main', tituloBet: titulo, descripcion: descri, betMin: min, equipoA: eqA, equipoB: eqB, porcen: porcentaje, idTlg: idTelegram, paramAltaExists: parametrosExisten});
+  }  else {
+    parametrosExisten=false;
+  }
+  res.render("index", {layout: 'main', tituloBet: titulo, descripcion: descri, betMin: min, equipoA: eqA, equipoB: eqB, porcen: porcentaje, idTlg: idTelegram, paramAltaExists: parametrosExisten, url: urlFirmar});
 });
 
 app.get("/apostar", (req, res) => {
@@ -52,20 +55,27 @@ app.get("/apostar", (req, res) => {
   let win = req.query.win;
   let titulo = req.query.titulo;
   let min = req.query.min;
+  let urlApostar = "apostar?id=" + id + "&win=" + win + "&titulo=" + titulo + "&min=" + min;
+  console.log('url a', urlApostar);
   if (id != null && win!=null && titulo != null && min != null){
     parametrosExisten=true;
-  }  
-  res.render("index", {layout: 'main', idBet: id, eqWin: win,  tituloBet: titulo, min: min, paramApostarExists: parametrosExisten});
+  }  else {
+    parametrosExisten=false;
+  }
+  res.render("index", {layout: 'main', idBet: id, eqWin: win,  tituloBet: titulo, min: min, paramApostarExists: parametrosExisten, url: urlApostar});
 });
 
 app.get("/cerrar", (req, res) => {
   console.log('get /cerrar');
   let id = req.query.id;
   let titulo = req.query.titulo;
+  let urlCerrar = "cerrar?id="+id+"&titulo="+titulo;
   if (id != null && titulo != null){
     parametrosExisten=true;
-  }  
-  res.render("index", {layout: 'main', idBet: id, tituloBet: titulo, paramCerrarExists: parametrosExisten});
+  }  else {
+    parametrosExisten=false;
+  }
+  res.render("index", {layout: 'main', idBet: id, tituloBet: titulo, paramCerrarExists: parametrosExisten, url: urlCerrar});
 });
 
 app.get("/distribuir", (req, res) => {
@@ -73,10 +83,13 @@ app.get("/distribuir", (req, res) => {
   let id = req.query.id;
   let winner = req.query.winner;
   let titulo = req.query.titulo;
+  let urlDistribuir = "distribuir?id="+id+"&winner="+winner+"&titulo="+titulo;
   if (id != null && winner != null && titulo != null){
     parametrosExisten=true;
-  }  
-  res.render("index", {layout: 'main', idBet: id, winnerBet: winner, tituloBet: titulo, paramDistribuirExists: parametrosExisten});
+  }  else {
+    parametrosExisten=false;
+  }
+  res.render("index", {layout: 'main', idBet: id, winnerBet: winner, tituloBet: titulo, paramDistribuirExists: parametrosExisten, url: urlDistribuir});
 });
 
 app.listen(app.get('port'), () => {
