@@ -41,13 +41,13 @@ function init() {
     boton.addEventListener('click', () => {    
       if (typeof window.ethereum == 'undefined') {   
         const url = document.getElementById('url').value;
-       // console.log('llamada:', url);
+        //console.log('llamada:', url);
         Swal.fire({
           title: '¡ Metamask no instalado !',
           position: 'top',
           html: 'Para poder usar esta web necesita tener instalado ' +
-          '<a target="_blank" href="https://metamask.app.link/dapp/grada7.ga/' + url + '">Metamask</a>',
-        });
+          '<a target="_blank" href="dapp://grada7.ga/' + url + '">Metamask</a>'
+        })
       } else {
         const valueAd = document.getElementById('accountSelected').textContent;    
         if (valueAd.length===0) {
