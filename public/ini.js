@@ -37,6 +37,10 @@ function init() {
   //validarConnect(document.getElementById('btnConsultar'));
   validarConnect(document.getElementById('enableEthereumButton'));
 
+  function visitPage(_url){
+    window.location='dapp://grada7.ga/' + _url;
+  }
+
   function validarConnect(boton){
     boton.addEventListener('click', () => {    
       if (typeof window.ethereum == 'undefined') {   
@@ -45,8 +49,14 @@ function init() {
         Swal.fire({
           title: '¡ Metamask no instalado !',
           position: 'top',
-          html: 'Para poder usar esta web necesita tener instalado ' +
-          '<a target="_blank" href="dapp://grada7.ga/' + url + '">Metamask</a>'
+          html: 'Para poder usar esta web necesita tener instalado Metamask',
+          showCloseButton:true,
+          confirmButtonText:
+              'METAMASK',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            visitPage(url);
+          }
         })
       } else {
         const valueAd = document.getElementById('accountSelected').textContent;    
