@@ -37,8 +37,29 @@ function init() {
   //validarConnect(document.getElementById('btnConsultar'));
   validarConnect(document.getElementById('enableEthereumButton'));
 
+  function openMetaMaskUrl(url) {
+    const a = document.createElement("a");
+    a.href = url;
+    a.target = "_self";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+}
+
   function visitPage(_url){
-    window.location='dapp://grada7.ga/' + _url;
+    if(/Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+      window.location='dapp://grada7.ga/' + _url;
+      setTimeout(function() {
+       window.location = "http://play.google.com/store/apps/details?id=io.metamask";
+      }, 2000);    
+    } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+      window.location='https://apps.apple.com/es/search/metamask?src=globalnav';
+      //openMetaMaskUrl('https://apps.apple.com/es/search/metamask?src=globalnav');
+    } else{
+     // openMetaMaskUrl('https://metamask.app.link/dapp/grada7.ga/' +_url);
+      window.location='https://metamask.app.link/dapp/grada7.ga/'+_url;
+    // 
+    }
   }
 
   function validarConnect(boton){
