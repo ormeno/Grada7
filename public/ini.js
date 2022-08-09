@@ -67,13 +67,12 @@ function init() {
       if (typeof window.ethereum == 'undefined') {   
         const url = document.getElementById('url').value;
         //console.log('llamada:', url);
-        Swal.fire({
+        Toast.fire({
           title: '¡ Metamask no instalado !',
           position: 'top',
           html: 'Para poder usar esta web necesita tener instalado Metamask',
           showCloseButton:true,
-          confirmButtonText:
-              'METAMASK',
+          confirmButtonText: 'METAMASK',
         }).then((result) => {
           if (result.isConfirmed) {
             visitPage(url);
