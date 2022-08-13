@@ -53,7 +53,7 @@ function init() {
        window.location = "http://play.google.com/store/apps/details?id=io.metamask";
       }, 2000);    
     } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-      window.location='https://apps.apple.com/es/search/metamask?src=globalnav';
+      window.location='https://apps.apple.com/es/app/metamask-blockchain-wallet/id1438144202';
       //openMetaMaskUrl('https://apps.apple.com/es/search/metamask?src=globalnav');
     } else{
      // openMetaMaskUrl('https://metamask.app.link/dapp/grada7.ga/' +_url);
