@@ -28,6 +28,7 @@ const HDWalletProvider = require('@truffle/hdwallet-provider');
 const maticKey = process.env.MUMBAI_KEY;
 const infuraKey = process.env.INFURA_KEY;
 const chainstackKey = process.env.CHAINSTACK_KEY;
+const thunderTesnetKey = process.env.THUNDERTESNET_KEY;
 const chainstackKeyPro = process.env.CHAINSTACK_KEY_PRO;
 
 
@@ -80,6 +81,12 @@ module.exports = {
       },
       network_id: 137,
     },
+    thunderTestnet: {
+           provider: () => new HDWalletProvider(thunderTesnetKey, "https://testnet-rpc.thundercore.com"),
+           network_id: "18",
+           gas: 90000000,
+           gasPrice: 1e9
+         }
     // Another network with more advanced options...
     // advanced: {
     // port: 8777,             // Custom port
